@@ -1,0 +1,378 @@
+
+<html>
+<head>
+<meta http-equiv="conten-type" content="text/html; charset=UTF-8" />
+<title>BIBLIOTECA DIGITAL</title>
+<head>
+  <style>
+    /* Tu código CSS aquí */
+table {
+  border-collapse: collapse; /* Combina las celdas de la tabla */
+ /* width: 80%;  Hace que la tabla ocupe todo el ancho disponible */
+  overflow-x: auto; /* Muestra una barra de desplazamiento horizontal si la tabla es más ancha que la pantalla */
+}
+
+th, td {
+  text-align: left; /* Alinea el texto en la celda a la izquierda */
+  padding: 8px; /* Añade espacio alrededor del texto en la celda */
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2; /* Pinta de gris las filas pares */
+}
+
+/* Estilos para dispositivos móviles */
+@media screen and (max-width: 600px) {
+  th, td {
+    display: block; /* Muestra cada celda en una línea independiente */
+  }
+  th {
+    font-size: smaller; /* Hace que el encabezado de la tabla sea más pequeño */
+  }
+  td {
+    border-top: none; /* Oculta la línea superior de cada celda */
+  }
+  td:before {
+    content: attr(data-label); /* Muestra el encabezado de la celda en una línea independiente encima de la celda */
+    display: block;
+    font-weight: bold;
+  }
+}
+
+/* Barra de navegación */
+
+.navbar {
+    min-height: 65px;
+    border-bottom: 1px solid #edf0f4;
+}
+
+.navbar-brand {
+    color: #344563 !important;
+    font-size: 19px;
+    letter-spacing: -.4px;
+}
+
+.navbar-brand i {
+    color: #405c91;
+}
+
+.navbar .nav-link {
+    color: #667085;
+    font-size: 14px;
+    padding-left: 14px !important;
+    padding-right: 14px !important;
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link.active {
+    color: #405c91;
+}
+
+.navbar .dropdown-menu {
+    border: 1px solid #edf0f4;
+    border-radius: 10px;
+    box-shadow: 0 8px 25px rgba(0,0,0,.08);
+    padding: 8px;
+}
+
+.navbar .dropdown-item {
+    font-size: 14px;
+    padding: 9px 12px;
+    border-radius: 6px;
+}
+
+.navbar .dropdown-item:hover {
+    background: #f3f5f9;
+}
+
+.navbar .dropdown-item.text-danger:hover {
+    background: #fff0f0;
+}
+
+.navbar-toggler:focus {
+    box-shadow: none;
+}
+
+@media (max-width: 991px) {
+
+    .navbar-collapse {
+        padding: 15px 0;
+    }
+
+    .navbar .dropdown-menu {
+        border: none;
+        box-shadow: none;
+        background: #f8f9fb;
+    }
+
+}
+	
+  </style>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+      rel="stylesheet">
+
+<link href="https://cdn.datatables.net/2.3.4/css/dataTables.bootstrap5.min.css"
+      rel="stylesheet">
+
+<link href="https://cdn.datatables.net/responsive/3.0.7/css/responsive.bootstrap5.min.css"
+      rel="stylesheet">
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+<script src="https://cdn.datatables.net/2.3.4/js/dataTables.min.js"></script>
+
+<script src="https://cdn.datatables.net/2.3.4/js/dataTables.bootstrap5.min.js"></script>
+
+<script src="https://cdn.datatables.net/responsive/3.0.7/js/dataTables.responsive.min.js"></script>
+
+<script src="https://cdn.datatables.net/responsive/3.0.7/js/responsive.bootstrap5.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+
+    <div class="container-fluid px-3 px-md-4">
+
+        <!-- Logotipo -->
+        <a class="navbar-brand fw-bold"
+           href="dashboard.php">
+
+            <i class="bi bi-book-half me-2"></i>
+            Mi Biblioteca
+
+        </a>
+
+        <!-- Botón menú móvil -->
+        <button class="navbar-toggler border-0"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#menuPrincipal"
+                aria-controls="menuPrincipal"
+                aria-expanded="false"
+                aria-label="Abrir menú">
+
+            <span class="navbar-toggler-icon"></span>
+
+        </button>
+
+        <!-- Contenido menú -->
+        <div class="collapse navbar-collapse"
+             id="menuPrincipal">
+
+            <!-- Opciones izquierda -->
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+                <li class="nav-item">
+                    <a class="nav-link"
+                       href="dashboard.php">
+
+                        <i class="bi bi-house me-1"></i>
+                        Inicio
+
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link"
+                       href="Mis_libros.php?orden=I">
+
+                        <i class="bi bi-book me-1"></i>
+                        Mis descargas
+
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link"
+                       href="usuarios.php">
+
+                        <i class="bi bi-people me-1"></i>
+                        Usuarios
+
+                    </a>
+                </li>
+
+            </ul>
+
+            <!-- Usuario derecha -->
+            <ul class="navbar-nav">
+
+                <li class="nav-item dropdown">
+
+                    <a class="nav-link dropdown-toggle
+                              d-flex align-items-center"
+                       href="#"
+                       role="button"
+                       data-bs-toggle="dropdown"
+                       aria-expanded="false">
+
+                        <i class="bi bi-person-circle fs-5 me-2"></i>
+
+                       Miguel Carrasco
+
+                    </a>
+
+                    <ul class="dropdown-menu dropdown-menu-end">
+
+                        <li>
+                            <span class="dropdown-item-text
+                                         text-secondary small">
+
+                                Sesión iniciada
+
+                            </span>
+                        </li>
+
+                        <li><hr class="dropdown-divider"></li>
+
+                        <li>
+                            <a class="dropdown-item"
+                               href="perfil.php">
+
+                                <i class="bi bi-person me-2"></i>
+                                Mi perfil
+
+                            </a>
+                        </li>
+
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li>
+
+                            <form method="POST"
+                                  action="logout.php">
+
+                                <input type="hidden"
+                                       name="csrf_token"
+                                       value="">
+
+                                <button type="submit"
+                                        class="dropdown-item text-danger">
+
+                                    <i class="bi bi-box-arrow-right me-2"></i>
+                                    Cerrar sesión
+
+                                </button>
+
+                            </form>
+
+                        </li>
+
+                    </ul>
+
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+</nav>
+
+
+
+<font face='Trebuchet ms' >
+<center><h1>BIBLIOTECA DIGITAL</h1>
+
+<!--	nueva_descarga.php	-->
+<table border='0' width='100%'><tr><td><CENTER><table border='1' cellpadding='3' cellspacing='0'><tr><th>USUARIO / LECTOR</TH><TH>E-Mail</TH><TH>&Uacute;ltima conexi&oacute;n</TH></TR><TR><TD>CARRASCO PECCI, MIGUEL ANGEL</TD><TD>miguelcarrasco657@gmail.com</TD><TD>12-11-2026 09:59:02</TD></TR></TABLE></CENTER></td><td><form method='POST' action='peticiones.php'><input type='submit' value='Peticiones'></form></td><td><form method='POST' action='salir.php'><input type='submit' value='DESCONECTAR'></form></td></tr></table><center><table border='1' cellpadding='3' cellspacing='0'><caption>Tus &uacute;ltimas descargas fueron<BR><a href='Mis_libros.php?orden=I'>Ver todas tus descargas</a></caption>
+
+
+            <!-- Tabla -->
+            <div class="table-responsive">
+
+                <table id="tablaDescargas"
+                       class="table table-hover align-middle w-100">
+
+                    <thead class="table-light">
+
+                        <tr>
+                            <th style="width:50px">#</th>
+                            <th>Título</th>
+                            <th>Autor</th>
+                            <th>Fecha</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+<tr><td align='right'>1</td><td>La piel de una gota</td><td>César Pérez Gellida</td><td>2026-10-02 15:10:12</td></tr><tr><td align='right'>2</td><td>Bajo tierra seca</td><td>César Pérez Gellida</td><td>2026-09-16 03:01:07</td></tr><tr><td align='right'>3</td><td>La gaviota</td><td>Sándor Márai</td><td>2026-08-14 20:32:11</td></tr><tr><td align='right'>4</td><td>La gaviota</td><td>Sándor Márai</td><td>2026-08-14 20:32:07</td></tr><tr><td align='right'>5</td><td>La caza del ejecutor</td><td>Vicente Vallés</td><td>2026-07-01 21:12:24</td></tr><tr><td align='right'>6</td><td>El enigma Israel: Una historia sorprendente</td><td>Henrique Cymerman</td><td>2026-05-02 15:14:48</td></tr><tr><td align='right'>7</td><td>Maite</td><td>Fernando Aramburu</td><td>2026-03-09 08:36:27</td></tr><tr><td align='right'>8</td><td>Madrid 1945: La noche de los Cuatro Caminos</td><td>Andrés Trapiello</td><td>2025-10-15 04:42:53</td></tr><tr><td align='right'>9</td><td>Misión en París</td><td>Arturo Pérez-Reverte</td><td>2025-10-15 04:35:56</td></tr><tr><td align='right'>10</td><td>El último Secreto</td><td>Dan Brown</td><td>2025-10-15 04:35:25</td></tr>
+</tbody>
+
+                </table>
+
+            </div>
+
+
+<form method='POST' action='selec_libros.php'>
+<BR><center><table border="0" width="75%"><tr><th colspan="2">B&uacute;squeda de libros en la Biblioteca</th></tr>
+<tr><td>T&iacute;tulo:</td><td><input type='text' size='80' maxlength='80' name='titulo'/></td></tr>
+<tr><td>Autor:</td><td><input type='text' size='80' maxlength='80' name='autor'/></td></tr>
+<tr><td>Ordenaci&oacute;n:</td><td><select name="orden">
+<option value="I" selected>Por ID descendente</option>
+<option value="Y" >Por ID ascendente</option>
+<option value="A" >Por AUTORES, ascendente</option>
+<option value="B" >Por AUTORES, descendente</option>
+<option value="C" >Por T&Iacute;TULOS, ascendente</option>
+<option value="D" >Por T&Iacute;TULOS, descendente</option>
+</select></td></tr>
+<tr><th colspan="2"><input type='submit' value='ENTER'/></th></tr></table></center>
+</form>
+
+
+
+<script>
+
+$(document).ready(function () {
+
+    $('#tablaDescargas').DataTable({
+
+        responsive: true,
+
+        pageLength: 5,
+
+        lengthChange: false,
+
+        searching: true,
+
+        ordering: true,
+
+        order: [[3, 'desc']],
+
+        info: true,
+
+        paging: true,
+
+        language: {
+            search: "Buscar:",
+            zeroRecords: "No se encontraron libros",
+            emptyTable: "No hay descargas registradas",
+            info: "Mostrando _START_ a _END_ de _TOTAL_ descargas",
+            infoEmpty: "Sin descargas",
+            infoFiltered: "(filtrado de _MAX_ registros)",
+            paginate: {
+                first: "Primero",
+                previous: "Anterior",
+                next: "Siguiente",
+                last: "Último"
+            }
+        }
+
+    });
+
+});
+
+</script>
+</body>
+</html>
